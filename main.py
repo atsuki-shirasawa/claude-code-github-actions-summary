@@ -14,24 +14,26 @@ from src.report_generator import generate_csv_report
 @click.command()
 @click.option(
     "--repo",
-    default="retail-ai-inc/toppie",
+    type=str,
+    required=True,
     help="Repository name in format owner/repo",
 )
 @click.option(
     "--workflow",
+    type=str,
     default="Claude Auto Review with Tracking",
     help="Workflow name",
 )
 @click.option(
     "--days",
-    default=30,
     type=int,
+    default=30,
     help="Number of days to look back",
 )
 @click.option(
     "--limit",
-    default=1000,
     type=int,
+    default=1000,
     help="Maximum number of runs to fetch",
 )
 @click.option(
@@ -70,13 +72,18 @@ def main(
 
     Args:
         repo (str): Repository name in format owner/repo
-        workflow (str): _description_
+        workflow (str): Workflow name
         days (int): Number of days to look back
-        limit (int, optional): _description_. Defaults to 1000.
-        csv_output (Path, optional): _description_. Defaults to Path("claude_review_report.csv").
-        json_output (Path, optional): _description_. Defaults to Path("claude_metrics_output.json").
-        no_csv (bool, optional): _description_. Defaults to False.
-        no_json (bool, optional): _description_. Defaults to False.
+        limit (int, optional): \
+            Maximum number of runs to fetch. Defaults to 1000.
+        csv_output (Path, optional): \
+            CSV output file path. Defaults to Path("claude_review_report.csv").
+        json_output (Path, optional): \
+            JSON output file path. Defaults to Path("claude_metrics_output.json").
+        no_csv (bool, optional): \
+            Skip CSV report generation. Defaults to False.
+        no_json (bool, optional): \
+            Skip JSON output. Defaults to False.
     """
     logger.info(
         f"Fetching workflow runs for '{workflow}' "
