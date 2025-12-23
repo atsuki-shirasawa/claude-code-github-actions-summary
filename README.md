@@ -149,9 +149,59 @@ CSV ファイルには以下のカラムが含まれます：
 | 13  | 終了時刻       | 実行終了時刻                  |
 | 14  | PR リンク      | GitHub の PR へのリンク       |
 
+```csv
+PR番号,PR名,PR Author,ブランチ,モデル,コスト (USD),処理時間,ターン数,コミット数,ファイル変更数,実行ステータス,開始時刻,終了時刻,PRリンク
+121,Release: Merge feature branch to main,sample-user,develop,sonnet-4.5,0.6942,207.302,32,57,70,success,2025-12-22 09:04:27,2025-12-22 09:08:27,https://github.com/sample-org/sample-repo/pull/121
+120,feat: add error handling for API requests,sample-user,feature/add-error-handling,sonnet-4.5,0.4966,155.488,22,5,8,success,2025-12-22 08:50:26,2025-12-22 08:53:37,https://github.com/sample-org/sample-repo/pull/120
+120,feat: add error handling for API requests,sample-user,feature/add-error-handling,sonnet-4.5,0.4577,146.525,25,4,8,success,2025-12-22 08:36:05,2025-12-22 08:39:04,https://github.com/sample-org/sample-repo/pull/120
+119,feat(ui): enhance data display with table/code mode toggle,sample-user,feature/enhance-data-display,sonnet-4.5,0.3319,118.523,11,9,11,success,2025-12-22 00:27:23,2025-12-22 00:29:53,https://github.com/sample-org/sample-repo/pull/119
+119,feat(ui): enhance data display with table/code mode toggle,sample-user,feature/enhance-data-display,sonnet-4.5,0.6898,208.952,30,8,11,success,2025-12-22 00:21:14,2025-12-22 00:25:14,https://github.com/sample-org/sample-repo/pull/119
+...
+```
+
 ### JSON Format
 
 JSON ファイルには各実行の詳細なメトリクスが配列形式で保存されます。
+
+```json
+[
+  {
+    "run_id": "20426748554",
+    "pr_name": "feat: add error handling for API requests",
+    "pr_number": 120,
+    "branch": "feature/add-error-handling",
+    "status": "success",
+    "model": "claude-sonnet-4-5-20250929",
+    "total_cost_usd": 0.4965642999999999,
+    "duration_ms": 155488,
+    "num_turns": 22,
+    "start_time": "2025-12-22T08:50:26.8545466Z",
+    "end_time": "2025-12-22T08:53:37.7604735Z",
+    "is_error": false,
+    "pr_author": "sample-user",
+    "total_commits": 5,
+    "changed_files": 8
+  },
+  {
+    "run_id": "20426440936",
+    "pr_name": "feat: add error handling for API requests",
+    "pr_number": 120,
+    "branch": "feature/add-error-handling",
+    "status": "success",
+    "model": "claude-sonnet-4-5-20250929",
+    "total_cost_usd": 0.4577244499999999,
+    "duration_ms": 146525,
+    "num_turns": 25,
+    "start_time": "2025-12-22T08:36:05.7873997Z",
+    "end_time": "2025-12-22T08:39:04.7201467Z",
+    "is_error": false,
+    "pr_author": "sample-user",
+    "total_commits": 4,
+    "changed_files": 8
+  },
+  ...
+]
+```
 
 ## Development
 
